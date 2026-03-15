@@ -1,4 +1,10 @@
-# NANSA Project Instructions
+# NANSA Agent Instructions v1.1.0 🧠
+
+- **Last Updated**: 2026-03-15
+- **Standard Prompts**: [.agents/prompts/](file:///Users/jeffrey/Desktop/portfolio/nansa/apps/client/.agents/prompts/) 핵심 작업별 표준 프롬프트 카탈로그 참조.
+- **Changelog**:
+  - v1.1.0: 프롬프트 버전 관리 체계 도입, Git Flow 전략 수립, CI/CD 자동화 완료.
+  - v1.0.0: 초기 아키텍처 및 SDD 프로세스 수립.
 
 ## 0. Persona & Global Rules 🧠
 
