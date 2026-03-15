@@ -1,0 +1,24 @@
+{
+  "project_name": "NANSA",
+  "version": "1.0.0",
+  "agent_settings": {
+    "persona": "Lead Architect & Career Matching Expert",
+    "primary_model": "gemini-2.0-flash",
+    "coding_standards": {
+      "framework": "Next.js 16 / React 19",
+      "architecture": "FSD v2.1",
+      "style": "Tailwind CSS v4 (Strict)",
+      "validation": "Zod"
+    },
+    "context_optimization": {
+      "prefer_shorthand_docs": true,
+      "base_directory": "src/"
+    }
+  },
+  "directories": {
+    "catalog": ".agents/catalog",
+    "prompts": ".agents/prompts",
+    "workflows": ".agents/workflows",
+    "specs": ".agents/specs"
+  }
+}
