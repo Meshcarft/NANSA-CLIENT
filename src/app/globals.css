@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@variant dark ([data-theme="dark"] &, &[data-theme="dark"]);
 
 @theme {
   /* OKLCH Color Palette - Variables */
