@@ -1,34 +1,48 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { act, renderHook } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
 import { useAgentStore } from "../agent-store";
 
-describe("Agent Store", () => {
-  beforeEach(() => {
-    // Reset state before each test
-    useAgentStore.setState({ isOpen: false });
+describe("useAgentStore", () => {
+  it("should have initial state", () => {
+    const { result } = renderHook(() => useAgentStore());
+    expect(result.current.isOpen).toBe(false);
+    expect(result.current.width).toBe(448);
   });
 
-  it("should have initial state isOpen as false", () => {
-    expect(useAgentStore.getState().isOpen).toBe(false);
+  it("should open and close", () => {
+    const { result } = renderHook(() => useAgentStore());
+
+    act(() => {
+      result.current.open();
+    });
+    expect(result.current.isOpen).toBe(true);
+
+    act(() => {
+      result.current.close();
+    });
+    expect(result.current.isOpen).toBe(false);
   });
 
-  it("should open the panel", () => {
-    useAgentStore.getState().open();
-    expect(useAgentStore.getState().isOpen).toBe(true);
+  it("should toggle", () => {
+    const { result } = renderHook(() => useAgentStore());
+
+    act(() => {
+      result.current.toggle();
+    });
+    expect(result.current.isOpen).toBe(true);
+
+    act(() => {
+      result.current.toggle();
+    });
+    expect(result.current.isOpen).toBe(false);
   });
 
-  it("should close the panel", () => {
-    // Open first
-    useAgentStore.setState({ isOpen: true });
+  it("should set width", () => {
+    const { result } = renderHook(() => useAgentStore());
 
-    useAgentStore.getState().close();
-    expect(useAgentStore.getState().isOpen).toBe(false);
-  });
-
-  it("should toggle the panel state", () => {
-    useAgentStore.getState().toggle();
-    expect(useAgentStore.getState().isOpen).toBe(true);
-
-    useAgentStore.getState().toggle();
-    expect(useAgentStore.getState().isOpen).toBe(false);
+    act(() => {
+      result.current.setWidth(500);
+    });
+    expect(result.current.width).toBe(500);
   });
 });

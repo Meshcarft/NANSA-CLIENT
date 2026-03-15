@@ -23,3 +23,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const Resized: Story = {
+  decorators: [
+    (Story) => {
+      const setWidth = useAgentStore((state) => state.setWidth);
+      useEffect(() => {
+        setWidth(600);
+      }, [setWidth]);
+      return <Story />;
+    },
+  ],
+};
