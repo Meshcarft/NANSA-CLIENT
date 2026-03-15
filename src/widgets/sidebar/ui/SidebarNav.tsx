@@ -26,7 +26,7 @@ export function SidebarNav({ isCollapsed, isMobileOpen, pathname, closeMobile }:
               "group flex items-center px-3 py-3 rounded-xl transition-all relative",
               isActive
                 ? "bg-primary/20 text-primary glow-sm"
-                : "text-muted hover:bg-black/5 dark:hover:bg-white/5 hover:text-foreground",
+                : "text-muted hover:bg-foreground/5 hover:text-foreground",
               isCollapsed && !isMobileOpen ? "justify-center" : "space-x-4",
             )}
           >

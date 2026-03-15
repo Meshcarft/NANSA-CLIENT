@@ -50,13 +50,13 @@
 
   --background: oklch(97% 0.01 260);
   --surface: oklch(100% 0 0);
-  --border: oklch(85% 0.01 260);
+  --border: oklch(80% 0.02 260); /* Increased contrast from 85% to 80% */
 
   --foreground: oklch(20% 0.02 260);
   --muted: oklch(50% 0.02 260);
 
   --glass-bg: oklch(100% 0 0 / 0.7);
-  --glass-border: oklch(0% 0 0 / 0.1);
+  --glass-border: oklch(0% 0 0 / 0.15); /* Increased opacity from 0.1 to 0.15 */
 }
 
 [data-theme="dark"] {
