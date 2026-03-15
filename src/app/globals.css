@@ -1,26 +1,130 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* OKLCH Color Palette - Variables */
+  --color-primary: var(--primary);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
 
-@theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-surface: var(--surface);
+  --color-border: var(--border);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+
+  /* Typography */
+  --font-sans: "Pretendard Variable", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Border Radius */
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+
+  /* Animation */
+  --animate-agent-reveal: agent-reveal 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+
+  @keyframes agent-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  /* Dark Mode (Default) */
+  --primary: oklch(45% 0.2 260);
+  --success: oklch(65% 0.15 160);
+  --danger: oklch(55% 0.2 25);
+
+  --background: oklch(15% 0.02 260);
+  --surface: oklch(22% 0.02 260);
+  --border: oklch(25% 0.02 260);
+
+  --foreground: oklch(98% 0.01 260);
+  --muted: oklch(65% 0.02 260);
+
+  --glass-bg: oklch(22% 0.02 260 / 0.4);
+}
+
+[data-theme="light"] {
+  --primary: oklch(55% 0.23 260);
+  --success: oklch(60% 0.18 160);
+  --danger: oklch(50% 0.22 25);
+
+  --background: oklch(97% 0.01 260);
+  --surface: oklch(100% 0 0);
+  --border: oklch(85% 0.01 260);
+
+  --foreground: oklch(20% 0.02 260);
+  --muted: oklch(50% 0.02 260);
+
+  --glass-bg: oklch(100% 0 0 / 0.7);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    min-height: 100vh;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  /* Dynamic Mesh Gradient Background */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image:
+      radial-gradient(circle at 50% -20%, var(--primary), transparent 70%),
+      radial-gradient(circle at 0% 0%, var(--primary), transparent 50%);
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-tight font-semibold;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background-color: var(--glass-bg);
+    @apply backdrop-blur-xl border border-white/10;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px var(--primary);
+  }
+
+  .agent-gradient {
+    background: linear-gradient(135deg, var(--primary), var(--success));
+  }
+
+  .glow-sm {
+    box-shadow: 0 0 15px var(--primary);
+  }
 }

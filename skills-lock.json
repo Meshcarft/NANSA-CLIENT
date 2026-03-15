@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "skills": {
+    "feature-sliced-design": {
+      "source": "aiko-atami/fsd",
+      "sourceType": "github",
+      "computedHash": "ac5259604cbadf64e47003377be8918e18779f5619a7ddb6f20506da1e238f2b"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "computedHash": "063a0e6448123cd359ad0044cc46b0e490cc7964d45ef4bb9fd842bd2ffbca67"
+    },
+    "react-query-best-practices": {
+      "source": "arraydude/agent-skills",
+      "sourceType": "github",
+      "computedHash": "e4d369765dc105db52acf400fe15f2960a46b5df7241699c95749af6a675916f"
+    },
+    "storybook": {
+      "source": "dalestudy/skills",
+      "sourceType": "github",
+      "computedHash": "cd915223b409a385fd9a41965b2835c2244d256801fe3d401764fd21f75c8e31"
+    },
+    "tailwind-design-system": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "computedHash": "7ff2f4650597e98ca4cd8f01231fb432ab4d187d6b12e641485aa871a04448cc"
+    },
+    "vitest-testing-patterns": {
+      "source": "erichowens/some_claude_skills",
+      "sourceType": "github",
+      "computedHash": "e981217e37acb8472d85e72f792428e7db8ccfa363f1e9fa336133ae4889f355"
+    }
+  }
+}
