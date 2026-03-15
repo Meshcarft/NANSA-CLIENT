@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
   /* OKLCH Color Palette - Variables */
   --color-primary: var(--primary);
@@ -41,22 +43,7 @@
 }
 
 :root {
-  /* Dark Mode (Default) */
-  --primary: oklch(45% 0.2 260);
-  --success: oklch(65% 0.15 160);
-  --danger: oklch(55% 0.2 25);
-
-  --background: oklch(15% 0.02 260);
-  --surface: oklch(22% 0.02 260);
-  --border: oklch(25% 0.02 260);
-
-  --foreground: oklch(98% 0.01 260);
-  --muted: oklch(65% 0.02 260);
-
-  --glass-bg: oklch(22% 0.02 260 / 0.4);
-}
-
-[data-theme="light"] {
+  /* Light Mode (Base) */
   --primary: oklch(55% 0.23 260);
   --success: oklch(60% 0.18 160);
   --danger: oklch(50% 0.22 25);
@@ -69,6 +56,24 @@
   --muted: oklch(50% 0.02 260);
 
   --glass-bg: oklch(100% 0 0 / 0.7);
+  --glass-border: oklch(0% 0 0 / 0.1);
+}
+
+[data-theme="dark"] {
+  /* Dark Mode Overrides */
+  --primary: oklch(45% 0.2 260);
+  --success: oklch(65% 0.15 160);
+  --danger: oklch(55% 0.2 25);
+
+  --background: oklch(15% 0.02 260);
+  --surface: oklch(22% 0.02 260);
+  --border: oklch(25% 0.02 260);
+
+  --foreground: oklch(98% 0.01 260);
+  --muted: oklch(65% 0.02 260);
+
+  --glass-bg: oklch(22% 0.02 260 / 0.4);
+  --glass-border: oklch(100% 0 0 / 0.1);
 }
 
 @layer base {
@@ -113,7 +118,8 @@
 @layer utilities {
   .glass {
     background-color: var(--glass-bg);
-    @apply backdrop-blur-xl border border-white/10;
+    border: 1px solid var(--glass-border);
+    @apply backdrop-blur-xl;
   }
 
   .text-glow {
