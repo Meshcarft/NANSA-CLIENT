@@ -66,6 +66,7 @@
 - **Optimistic Updates**: 에이전트의 활동으로 인한 데이터 변화는 즉각적으로 UI에 반영되어야 한다.
 - **Schema Validation**: 모든 API 응답과 폼 데이터는 Zod를 통해 검증하여 런타임 에러를 방지한다.
 - **TDD/SDD Flow**: 기능 명세(SDD) 후, 비즈니스 로직은 Vitest로, UI 컴포넌트는 Storybook으로 먼저 검증한다.
+- **Mandatory Artifacts**: 모든 새로운 피처나 UI 컴포넌트 구현 시, 반드시 대응하는 `.stories.tsx` (Storybook)와 `.test.tsx` (Vitest) 파일을 함께 작성해야 한다. 이를 누락할 경우 작업이 완료된 것으로 간주하지 않는다.
 
 ## 6. Implementation Workflow 🚀
 
