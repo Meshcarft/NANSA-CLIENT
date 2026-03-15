@@ -23,7 +23,7 @@ export function SidebarHeader({
   return (
     <div
       className={cn(
-        "flex items-center justify-between px-6 border-b border-black/10 dark:border-white/10 transition-all duration-300",
+        "flex items-center justify-between px-6 border-b border-border transition-all duration-300",
         isScrolled ? "h-16" : "h-20",
       )}
     >
@@ -45,7 +45,7 @@ export function SidebarHeader({
       <button
         type="button"
         onClick={isMobileOpen ? closeMobile : toggle}
-        className="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 text-muted hover:text-foreground transition-colors md:flex"
+        className="p-2 rounded-lg hover:bg-foreground/5 text-muted hover:text-foreground transition-colors md:flex"
       >
         {isMobileOpen ? (
           <X size={20} />

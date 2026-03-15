@@ -34,7 +34,7 @@ export function Header() {
         "fixed top-0 right-0 z-30 transition-all duration-300",
         "left-0 md:left-64",
         isSidebarCollapsed ? "md:left-20" : "md:left-64",
-        "bg-surface/80 backdrop-blur-xl border-b border-black/10 dark:border-white/10",
+        "bg-surface/80 backdrop-blur-xl border-b border-border/50 dark:border-border",
         isScrolled ? "h-16" : "h-20",
       )}
     >
