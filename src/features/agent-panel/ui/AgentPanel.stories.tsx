@@ -33,5 +33,6 @@ export const Resized: Story = {
       }, [setWidth]);
       return <Story />;
     },
+    ...(meta.decorators || []),
   ],
 };

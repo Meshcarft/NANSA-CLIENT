@@ -8,7 +8,7 @@ export function AgentPanelContent() {
 
   return (
     <div className="flex-1 p-6 overflow-y-auto space-y-6">
-      <div className="bg-white/5 border border-white/10 rounded-2xl p-4 animate-agent-reveal">
+      <div className="bg-foreground/5 border border-border rounded-2xl p-4 animate-agent-reveal">
         <p className="text-sm leading-relaxed text-foreground/90">
           안녕하세요! 당신의 성향과 기술 스택을 기반으로 **자동 매칭**을 시작했습니다. 인간의 개입
           없이 제가 직접 최고의 기업들을 선별해 드릴게요.

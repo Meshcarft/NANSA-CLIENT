@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/button";
 
@@ -48,6 +48,16 @@ export function ResizeHandle({
     },
     [handleMouseMove, stopResizing],
   );
+
+  // Cleanup event listeners on unmount
+  useEffect(() => {
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", stopResizing);
+      document.body.style.cursor = "default";
+      document.body.style.userSelect = "auto";
+    };
+  }, [handleMouseMove, stopResizing]);
 
   return (
     <Button
