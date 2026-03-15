@@ -19,7 +19,7 @@ export function HeaderActions({ isAgentOpen, onToggleAgent }: HeaderActionsProps
         <input
           type="text"
           placeholder="Search..."
-          className="w-48 xl:w-64 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all focus:w-64 xl:focus:w-80"
+          className="w-48 xl:w-64 bg-foreground/5 border border-border/50 rounded-xl py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all focus:w-64 xl:focus:w-80"
         />
       </div>
 
@@ -34,7 +34,7 @@ export function HeaderActions({ isAgentOpen, onToggleAgent }: HeaderActionsProps
         variant={isAgentOpen ? "primary" : "secondary"}
         size="icon"
         className={cn(
-          "relative overflow-hidden group border-black/10 dark:border-white/10 shrink-0",
+          "relative overflow-hidden group border-border/50 shrink-0",
           isAgentOpen && "shadow-[0_0_20px_oklch(45%_0.2_260_/_0.5)]",
         )}
       >
@@ -48,7 +48,7 @@ export function HeaderActions({ isAgentOpen, onToggleAgent }: HeaderActionsProps
       </Button>
 
       {/* User Actions */}
-      <div className="hidden sm:flex items-center gap-1 ml-1 border-l border-black/10 dark:border-white/10 pl-3">
+      <div className="hidden sm:flex items-center gap-1 ml-1 border-l border-border/50 pl-3">
         <Button variant="ghost" size="icon" className="text-muted shrink-0">
           <User className="w-5 h-5" />
         </Button>

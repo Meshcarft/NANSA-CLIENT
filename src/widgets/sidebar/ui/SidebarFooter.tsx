@@ -12,7 +12,7 @@ export function SidebarFooter({ isCollapsed, isMobileOpen }: SidebarFooterProps)
   const isMinimal = isCollapsed && !isMobileOpen;
 
   return (
-    <div className="p-4 space-y-4 border-t border-black/5 dark:border-white/5">
+    <div className="p-4 space-y-4 border-t border-border/50">
       {/* Appearance Section */}
       <div className="px-2">
         <p
@@ -29,7 +29,7 @@ export function SidebarFooter({ isCollapsed, isMobileOpen }: SidebarFooterProps)
       {/* Agent Status Card */}
       <div
         className={cn(
-          "bg-black/5 dark:bg-white/5 rounded-2xl p-4 flex items-center shrink-0",
+          "bg-foreground/5 rounded-2xl p-4 flex items-center shrink-0",
           isMinimal ? "justify-center" : "space-x-3",
         )}
       >
