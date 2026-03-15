@@ -30,7 +30,7 @@ export function AgentPanel() {
             exit={{ x: "100%", opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             style={{ width: `${width}px` }}
-            className="fixed top-0 right-0 h-full glass z-[70] shadow-2xl flex flex-col max-sm:!w-full"
+            className="fixed top-0 right-0 h-full glass z-[70] shadow-2xl flex flex-col max-sm:!w-full max-w-full"
           >
             {/* Resize Handle - Desktop Only */}
             <ResizeHandle width={width} setWidth={setWidth} />

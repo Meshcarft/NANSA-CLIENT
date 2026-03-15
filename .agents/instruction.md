@@ -135,7 +135,7 @@
    - 지적이 아키텍처(FSD)와 충돌할 경우: 사용자에게 보고하고, 결정된 내용을 명세(Specs)에 업데이트한다.
 4. **Continuous Improvement**: AI 리뷰어의 피드백 패턴을 분석하여 향후 코드 생성 및 명세 작성 단계에 반영한다.
 
-## 11. Dependency Management 📦
+## 12. Dependency Management 📦
 
 - 패키지 설치 시 `ERESOLVE` 등 의존성 에러가 발생하면, `--force`나 `--legacy-peer-deps`를 즉시 사용하지 않는다.
 - 대신 `package.json`을 분석하여 동일 라이브러리군(예: Storybook 애드온)의 버전 싱크가 맞는지 먼저 검토하고 수정을 제안한다.

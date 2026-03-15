@@ -7,7 +7,7 @@ interface AgentPanelHeaderProps {
 
 export function AgentPanelHeader({ onClose }: AgentPanelHeaderProps) {
   return (
-    <div className="p-6 border-b border-white/10 flex items-center justify-between">
+    <div className="p-6 border-b border-border flex items-center justify-between">
       <div className="flex items-center gap-3">
         <div className="w-10 h-10 agent-gradient rounded-xl flex items-center justify-center shadow-lg animate-pulse">
           <Bot className="text-white w-6 h-6" />
