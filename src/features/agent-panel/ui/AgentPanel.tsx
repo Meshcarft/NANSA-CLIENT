@@ -2,11 +2,54 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Bot, Sparkles, X } from "lucide-react";
+import { useCallback, useEffect, useRef } from "react";
 import { Button } from "@/shared/ui/button";
 import { useAgentStore } from "../model/agent-store";
 
 export function AgentPanel() {
-  const { isOpen, close } = useAgentStore();
+  const { isOpen, close, width, setWidth } = useAgentStore();
+  const isResizing = useRef(false);
+
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (!isResizing.current) return;
+
+      const newWidth = window.innerWidth - e.clientX;
+      // Clamp between 200px and 600px
+      if (newWidth >= 200 && newWidth <= 600) {
+        setWidth(newWidth);
+      }
+    },
+    [setWidth],
+  );
+
+  const stopResizing = useCallback(() => {
+    isResizing.current = false;
+    document.removeEventListener("mousemove", handleMouseMove);
+    document.removeEventListener("mouseup", stopResizing);
+    document.body.style.cursor = "default";
+    document.body.style.userSelect = "auto";
+  }, [handleMouseMove]);
+
+  const startResizing = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      isResizing.current = true;
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", stopResizing);
+      document.body.style.cursor = "col-resize";
+      document.body.style.userSelect = "none";
+    },
+    [handleMouseMove, stopResizing],
+  );
+
+  // Clean up on unmount
+  useEffect(() => {
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", stopResizing);
+    };
+  }, [handleMouseMove, stopResizing]);
 
   return (
     <AnimatePresence>
@@ -27,8 +70,29 @@ export function AgentPanel() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "100%", opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 h-full w-full max-w-md glass z-[70] shadow-2xl flex flex-col"
+            style={{ width: `${width}px` }}
+            className="fixed top-0 right-0 h-full glass z-[70] shadow-2xl flex flex-col max-sm:!w-full"
           >
+            {/* Resize Handle - Desktop Only */}
+            {/* biome-ignore lint/a11y/useSemanticElements: vertical separator */}
+            <div
+              role="separator"
+              tabIndex={0}
+              aria-orientation="vertical"
+              aria-label="에이전트 패널 크기 조절"
+              aria-valuenow={width}
+              aria-valuemin={200}
+              aria-valuemax={600}
+              onMouseDown={startResizing}
+              onKeyDown={(e) => {
+                if (e.key === "ArrowLeft") setWidth(Math.min(600, width + 10));
+                if (e.key === "ArrowRight") setWidth(Math.max(200, width - 10));
+              }}
+              className="absolute left-0 top-0 bottom-0 w-1.5 cursor-col-resize z-[80] group flex items-center justify-center invisible sm:visible hover:bg-primary/10 transition-colors focus:outline-none focus:bg-primary/20"
+            >
+              <div className="w-[1px] h-8 bg-border group-hover:bg-primary group-hover:h-full transition-all duration-300" />
+            </div>
+
             <div className="p-6 border-b border-white/10 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 agent-gradient rounded-xl flex items-center justify-center shadow-lg animate-pulse">
