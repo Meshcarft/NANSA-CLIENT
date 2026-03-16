@@ -23,13 +23,16 @@ export const Default: Story = {
   ),
 };
 
+const ThrowError = ({ message }: { message: string }) => {
+  throw new Error(message);
+};
+
 export const ErrorState: Story = {
   render: () => (
     <div className="w-[500px]">
-      <ErrorFallback
-        error={new Error("데이터를 불러오는 중 404 에러가 발생했습니다.")}
-        resetErrorBoundary={() => alert("다시 시도 클릭")}
-      />
+      <ErrorBoundary>
+        <ThrowError message="데이터를 불러오는 중 404 에러가 발생했습니다." />
+      </ErrorBoundary>
     </div>
   ),
 };
