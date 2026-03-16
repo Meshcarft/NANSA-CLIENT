@@ -33,7 +33,7 @@ src/
 
 ### Key Logic
 
-- `QueryClient` 설정 시 `useErrorBoundary: true` (또는 전역 defaultOptions)를 설정한다.
+- `QueryClient` 설정 시 `throwOnError: true` (또는 전역 `defaultOptions`의 `queries` 옵션)를 설정한다.
 - `useQueryErrorResetBoundary`를 사용하여 에러 발생 시 쿼리를 리셋할 수 있는 기능을 제공한다.
 
 ## 4. Implementation Plan 🚀
