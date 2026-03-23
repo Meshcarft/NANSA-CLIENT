@@ -20,7 +20,32 @@
 
 - **Spec First**: 모든 기능 구현은 반드시 `.agents/specs/` 폴더에 `.md` 형태의 명세서를 작성하는 것부터 시작한다.
 - **Approval Required**: 명세서 작성 후 사용자의 확정 승인이 떨어지기 전까지는 `src/` 폴더의 실제 코드를 수정하거나 생성하지 않는다.
-- **Spec Coverage**: 명세서는 비즈니스 로직, 데이터 모델, FSD 레이어 위치, 인터페이스를 명확히 포함해야 한다.
+- **Spec Coverage**: 명세서는 비즈니스 로직, 데이터 모델, FSD 레이어 위치, 인터페이스를 명확히 포함해야 하며, 특히 **[Implementation Plan]에 테스트 및 스토리북 작성 계획을 필수적으로 명시**한다.
+
+...
+
+## 11. Zero-Defect Quality Checklist (PR 필수 점검 사항) ✅
+
+에이전트는 모든 작업을 마치고 보고하기 전, 아래 체크리스트를 자가 점검해야 한다. 하나라도 누락될 경우 작업은 '미완료' 상태로 간주한다.
+
+1. **아키텍처 (Architecture)**
+   - [ ] FSD v2.1 레이어를 정확히 준수했는가? (레이어 간 참조 규칙 위반 확인)
+   - [ ] Public API (`index.ts`)를 통해 모듈화가 이루어졌는가?
+   - [ ] 단일 파일이 150라인을 초과하거나 책임이 비대하여 리팩토링이 필요한가?
+
+2. **일관성 (Consistency)**
+   - [ ] `src/shared/ui`에 있는 공통 컴포넌트를 우선적으로 활용했는가?
+   - [ ] Tailwind CSS v4(`@theme`)와 시스템 토큰을 디자인에 반영했는가?
+   - [ ] 기존 코드 베이스의 네이밍 컨벤션과 코딩 스타일을 유지했는가?
+
+3. **품질 검증 (Quality Assurance)**
+   - [ ] 신규 로직에 대한 **Vitest 유닛 테스트**가 작성되었고 모두 통과하는가?
+   - [ ] UI 컴포넌트에 대한 **Storybook 스토리**가 작성되었는가?
+   - [ ] `npx biome check`와 `npx tsc` 실행 시 에러나 경고가 전무한가?
+
+4. **접근성 및 성능 (A11y & Performance)**
+   - [ ] 인터랙티브 요소에 적절한 ARIA 속성과 키보드 접근성이 부여되었는가?
+   - [ ] 불필요한 리렌더링이나 메모리 누수 요인이 없는가?
 
 ## 2. Core Philosophy: Autonomous Agent Logic 🤖
 
@@ -66,6 +91,7 @@
 - **Optimistic Updates**: 에이전트의 활동으로 인한 데이터 변화는 즉각적으로 UI에 반영되어야 한다.
 - **Schema Validation**: 모든 API 응답과 폼 데이터는 Zod를 통해 검증하여 런타임 에러를 방지한다.
 - **TDD/SDD Flow**: 기능 명세(SDD) 후, 비즈니스 로직은 Vitest로, UI 컴포넌트는 Storybook으로 먼저 검증한다.
+- **Mandatory Artifacts**: 모든 새로운 피처나 UI 컴포넌트 구현 시, 반드시 대응하는 `.stories.tsx` (Storybook)와 `.test.tsx` (Vitest) 파일을 함께 작성해야 한다. 이를 누락할 경우 작업이 완료된 것으로 간주하지 않는다.
 
 ## 6. Implementation Workflow 🚀
 
@@ -108,6 +134,12 @@
    - 지적이 합당할 경우: 즉시 코드를 수정하고 린트/테스트 검증 후 재커밋한다.
    - 지적이 아키텍처(FSD)와 충돌할 경우: 사용자에게 보고하고, 결정된 내용을 명세(Specs)에 업데이트한다.
 4. **Continuous Improvement**: AI 리뷰어의 피드백 패턴을 분석하여 향후 코드 생성 및 명세 작성 단계에 반영한다.
+
+## 12. Dependency Management 📦
+
+- 패키지 설치 시 `ERESOLVE` 등 의존성 에러가 발생하면, `--force`나 `--legacy-peer-deps`를 즉시 사용하지 않는다.
+- 대신 `package.json`을 분석하여 동일 라이브러리군(예: Storybook 애드온)의 버전 싱크가 맞는지 먼저 검토하고 수정을 제안한다.
+- 메이저 업데이트나 알파/베타 버전 사용 시 버전 싱크를 맞춰도 해결되지 않는 피어 의존성 충돌은 `--legacy-peer-deps`를 사용하여 해결할 수 있다.
 
 ---
 **CRITICAL**: NANSA는 단순한 채용 사이트가 아니라, AI가 주도하는 지능형 매칭 엔진이다. UI/UX 역시 이러한 '지능형' 이미지를 비주얼과 인터랙션으로 전달해야 한다.

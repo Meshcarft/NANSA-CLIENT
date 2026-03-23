@@ -16,7 +16,7 @@ export function ThemeToggle({ collapsed = false }: { collapsed?: boolean }) {
   return (
     <div
       className={cn(
-        "flex items-center gap-2 p-1 bg-black/5 dark:bg-white/5 rounded-xl border border-black/10 dark:border-white/5 transition-all duration-300",
+        "flex items-center gap-2 p-1 bg-foreground/5 rounded-xl border border-border/50 transition-all duration-300",
         collapsed ? "flex-col" : "flex-row w-full",
       )}
     >

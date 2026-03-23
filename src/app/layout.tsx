@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   description: "AI-driven career matching platform with zero human intervention.",
 };
 
+import { ErrorBoundary } from "@/shared/ui/error-boundary";
+import { QueryProvider } from "./providers/QueryProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,7 +33,11 @@ export default function RootLayout({
           enableSystem={false}
           storageKey="nansa-theme"
         >
-          <LayoutContent>{children}</LayoutContent>
+          <QueryProvider>
+            <ErrorBoundary>
+              <LayoutContent>{children}</LayoutContent>
+            </ErrorBoundary>
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>

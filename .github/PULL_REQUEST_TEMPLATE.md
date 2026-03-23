@@ -10,7 +10,7 @@
 
 ## 🛠️ Changes
 
-- [작업 내용 1]
+- [작업 내용 1]ㅖ
 - [작업 내용 2]
 
 ## ✅ Quality Checklist (Agent Only)
