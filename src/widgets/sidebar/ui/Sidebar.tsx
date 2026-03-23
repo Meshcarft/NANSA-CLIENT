@@ -70,7 +70,7 @@ export function Sidebar() {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed left-0 top-0 bottom-0 w-[280px] bg-surface z-[60] border-r border-white/10 md:hidden flex flex-col"
+            className="fixed left-0 top-0 bottom-0 w-[280px] bg-surface z-[60] border-r border-border md:hidden flex flex-col"
           >
             {sidebarContent}
           </motion.aside>
@@ -83,7 +83,7 @@ export function Sidebar() {
         animate={{ width: isCollapsed ? 80 : 260 }}
         className={cn(
           "hidden md:flex fixed left-0 top-0 h-screen z-40 flex-col",
-          "bg-surface/80 border-r border-white/10 backdrop-blur-xl",
+          "bg-surface/80 border-r border-border backdrop-blur-xl",
           "overflow-hidden transition-all duration-300 ease-in-out",
         )}
       >
