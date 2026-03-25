@@ -15,11 +15,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const variants = {
       primary: "bg-white text-black hover:bg-white/90 shadow-lg",
       secondary:
-        "bg-foreground/5 text-muted-foreground hover:bg-foreground/10 hover:text-white border border-border/50",
-      outline: "border border-input bg-transparent hover:bg-accent/50 text-white",
+        "bg-foreground/5 text-muted-foreground hover:bg-foreground/10 hover:text-foreground border border-border/50",
+      outline: "border border-input bg-transparent hover:bg-accent/50 text-foreground",
       google: "bg-[#fff] text-[#757575] border border-[#dadce0] hover:bg-[#f8f9fa] shadow-sm",
       kakao: "bg-[#FEE500] text-[#000000] hover:bg-[#FEE500]/90",
-      ghost: "bg-transparent hover:bg-foreground/5 text-muted-foreground hover:text-white",
+      ghost: "bg-transparent hover:bg-foreground/5 text-muted-foreground hover:text-foreground",
     };
 
     const sizes = {

@@ -10,16 +10,15 @@ import { SidebarHeader } from "./SidebarHeader";
 import { SidebarNav } from "./SidebarNav";
 
 /**
- * Sidebar Widget
+ * Standard Workspace Sidebar (Primary)
  * FSD: Widgets Layer
- * Role: Assembly of Header, Nav, and Footer parts.
+ * Role: Navigation and main app actions.
  */
 export function Sidebar() {
   const { isCollapsed, toggle, isMobileOpen, closeMobile } = useSidebarStore();
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
-  // Sync scroll state with Header for horizontal line alignment
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -29,7 +28,7 @@ export function Sidebar() {
   }, []);
 
   const sidebarContent = (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full bg-surface">
       <SidebarHeader
         isScrolled={isScrolled}
         isCollapsed={isCollapsed}
@@ -49,7 +48,6 @@ export function Sidebar() {
 
   return (
     <>
-      {/* Mobile Overlay */}
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
@@ -62,7 +60,6 @@ export function Sidebar() {
         )}
       </AnimatePresence>
 
-      {/* Mobile Drawer */}
       <AnimatePresence>
         {isMobileOpen && (
           <motion.aside
@@ -77,17 +74,18 @@ export function Sidebar() {
         )}
       </AnimatePresence>
 
-      {/* Desktop Sidebar */}
       <motion.aside
         initial={false}
-        animate={{ width: isCollapsed ? 80 : 260 }}
+        animate={{
+          width: isCollapsed ? 80 : 260,
+        }}
         className={cn(
-          "hidden md:flex fixed left-0 top-0 h-screen z-40 flex-col",
-          "bg-surface/80 border-r border-border backdrop-blur-xl",
-          "overflow-hidden transition-all duration-300 ease-in-out",
+          "hidden md:flex fixed left-0 top-0 h-screen z-50 flex-col",
+          "bg-surface border-r border-border backdrop-blur-xl",
+          "transition-all duration-300 ease-in-out",
         )}
       >
-        {sidebarContent}
+        <div className="flex flex-col h-full w-full">{sidebarContent}</div>
       </motion.aside>
     </>
   );

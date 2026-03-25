@@ -1,20 +1,16 @@
+"use client";
+
 import { useCallback, useEffect, useRef } from "react";
 import { cn } from "@/shared/lib/utils";
-import { Button } from "@/shared/ui/button";
 
 interface ResizeHandleProps {
-  width: number;
+  // width: number; // Removed as it was unused
   setWidth: (width: number) => void;
   minWidth?: number;
   maxWidth?: number;
 }
 
-export function ResizeHandle({
-  width,
-  setWidth,
-  minWidth = 200,
-  maxWidth = 600,
-}: ResizeHandleProps) {
+export function ResizeHandle({ setWidth, minWidth = 300, maxWidth = 1200 }: ResizeHandleProps) {
   const isResizing = useRef(false);
 
   const handleMouseMove = useCallback(
@@ -49,7 +45,6 @@ export function ResizeHandle({
     [handleMouseMove, stopResizing],
   );
 
-  // Cleanup event listeners on unmount
   useEffect(() => {
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
@@ -60,22 +55,16 @@ export function ResizeHandle({
   }, [handleMouseMove, stopResizing]);
 
   return (
-    <Button
-      variant="plain"
-      size="none"
-      tabIndex={0}
-      aria-label="에이전트 패널 크기 조절"
+    <button
+      type="button"
+      aria-label="Resize agent panel"
       onMouseDown={startResizing}
-      onKeyDown={(e) => {
-        if (e.key === "ArrowLeft") setWidth(Math.min(maxWidth, width + 10));
-        if (e.key === "ArrowRight") setWidth(Math.max(minWidth, width - 10));
-      }}
       className={cn(
-        "absolute left-0 top-0 bottom-0 w-1.5 cursor-col-resize z-[80] group flex items-center justify-center",
-        "invisible sm:visible hover:bg-primary/10 transition-colors focus:outline-none focus:bg-primary/20",
+        "absolute left-0 top-0 bottom-0 w-1.5 cursor-col-resize z-[80] group flex items-center justify-center bg-transparent border-none p-0 outline-none",
+        "invisible sm:visible hover:bg-primary/20 transition-colors",
       )}
     >
       <div className="w-[1px] h-8 bg-border group-hover:bg-primary group-hover:h-full transition-all duration-300" />
-    </Button>
+    </button>
   );
 }

@@ -5,21 +5,15 @@ import { useAgentStore } from "@/features/agent-panel/model/agent-store";
 import { useSidebarStore } from "@/features/sidebar/model/sidebar-store";
 import { cn } from "@/shared/lib/utils";
 import { HeaderActions } from "./HeaderActions";
-import { HeaderLogo } from "./HeaderLogo";
 import { HeaderNav } from "./HeaderNav";
 
-/**
- * Header Widget
- * FSD: Widgets Layer
- * Role: Assembly of Logo/MobileMenu, Navigation, and Action parts.
- */
 export function Header() {
   const toggleAgent = useAgentStore((state) => state.toggle);
   const isAgentOpen = useAgentStore((state) => state.isOpen);
-  const { isCollapsed: isSidebarCollapsed, toggleMobile: toggleMobileSidebar } = useSidebarStore();
+  const isSidebarCollapsed = useSidebarStore((state) => state.isCollapsed);
+  const sidebarWidth = isSidebarCollapsed ? 80 : 280;
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Sync scroll state with Sidebar for horizontal line alignment
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -31,19 +25,24 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 right-0 z-30 transition-all duration-300",
-        "left-0 md:left-64",
-        isSidebarCollapsed ? "md:left-20" : "md:left-64",
-        "bg-surface/80 backdrop-blur-xl border-b border-border/50 dark:border-border",
-        isScrolled ? "h-16" : "h-20",
+        "fixed top-0 left-0 right-0 z-40 transition-all duration-300", // w-full explicitly via left-0 right-0
+        "bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border-b border-border/10",
+        isScrolled ? "h-14 shadow-sm" : "h-16",
       )}
     >
-      <div className="w-full h-full px-4 md:px-8 flex items-center relative">
-        <HeaderLogo onToggleMobileSidebar={toggleMobileSidebar} />
+      <div
+        className="w-full h-full flex items-center justify-between gap-6 px-6 lg:px-10 transition-all duration-300"
+        style={{ paddingLeft: `${sidebarWidth + 24}px` }} // Clear the sidebar + some margin
+      >
+        {/* Global Navigation Hub (Compact) */}
+        <div className="flex-1 flex items-center min-w-0">
+          <HeaderNav />
+        </div>
 
-        <HeaderNav />
-
-        <HeaderActions isAgentOpen={isAgentOpen} onToggleAgent={toggleAgent} />
+        {/* Quick Actions (High-Density) */}
+        <div className="flex items-center gap-4 shrink-0 px-2 lg:px-6">
+          <HeaderActions isAgentOpen={isAgentOpen} onToggleAgent={toggleAgent} />
+        </div>
       </div>
     </header>
   );

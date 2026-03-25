@@ -10,7 +10,7 @@ vi.mock("../../model/agent-store", () => ({
 
 describe("AgentPanel", () => {
   it("should not render when closed", () => {
-    (useAgentStore as any).mockReturnValue({
+    vi.mocked(useAgentStore).mockReturnValue({
       isOpen: false,
       close: vi.fn(),
       width: 448,
@@ -23,7 +23,7 @@ describe("AgentPanel", () => {
 
   it("should render when open", () => {
     const closeMock = vi.fn();
-    (useAgentStore as any).mockReturnValue({
+    vi.mocked(useAgentStore).mockReturnValue({
       isOpen: true,
       close: closeMock,
       width: 448,
@@ -36,7 +36,7 @@ describe("AgentPanel", () => {
 
   it("should call close when backdrop is clicked", () => {
     const closeMock = vi.fn();
-    (useAgentStore as any).mockReturnValue({
+    vi.mocked(useAgentStore).mockReturnValue({
       isOpen: true,
       close: closeMock,
       width: 448,

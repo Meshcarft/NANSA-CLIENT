@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/shared/providers/theme-provider";
-import { ErrorBoundary } from "@/shared/ui/ErrorBoundary/ErrorBoundary";
+import { QueryErrorBoundary } from "@/shared/ui/ErrorBoundary/QueryErrorBoundary";
 
 export const metadata: Metadata = {
   title: "NANSA | Autonomous Agent-Based Career Matching",
@@ -33,7 +33,7 @@ export default function RootLayout({
           storageKey="nansa-theme"
         >
           <QueryProvider>
-            <ErrorBoundary>{children}</ErrorBoundary>
+            <QueryErrorBoundary>{children}</QueryErrorBoundary>
           </QueryProvider>
         </ThemeProvider>
       </body>

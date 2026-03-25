@@ -1,10 +1,10 @@
-import { BarChart3, Briefcase, LayoutDashboard, Settings, Sparkles, Users } from "lucide-react";
+import { CheckCircle2, Heart, HelpCircle, LayoutDashboard, Search, Settings } from "lucide-react";
 
 export const MENU_ITEMS = [
-  { icon: LayoutDashboard, label: "Dashboard", href: "/" },
-  { icon: Sparkles, label: "AI Match", href: "/match" },
-  { icon: Briefcase, label: "Jobs", href: "/jobs" },
-  { icon: BarChart3, label: "Analytics", href: "/analytics" },
-  { icon: Users, label: "Candidates", href: "/candidates" },
-  { icon: Settings, label: "Settings", href: "/settings" },
+  { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
+  { icon: Search, label: "Search", href: "/" },
+  { icon: CheckCircle2, label: "Jobs Applied", href: "/applied" },
+  { icon: Heart, label: "Saved Jobs", href: "/saved" },
+  { icon: Settings, label: "Setting", href: "/settings" },
+  { icon: HelpCircle, label: "Help Center", href: "/help" },
 ];
